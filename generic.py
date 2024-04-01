@@ -5,14 +5,14 @@ db = "projet"
 
 isos = ["AFG","ZAF","ALB","DZA","DEU","AND","AGO","AIA","ATA","ATG","SAU","ARG","ARM","ABW","AUS","AUT","AZE","BHS","BHR","BGD","BRB","BEL","BLZ","BMU","BTN","BLR","BOL","BIH","BWA","BRN","BRA","BGR","BFA","BDI","BEN","KHM","CMR","CAN","CPV","CHL","CHN","CXR","CYP","CCK","COL","COM","COD","COG","COK","PRK","KOR","CRI","HRV","CUB","CIV","DNK","DJI","DMA","ESP","EST","FJI","FIN","FRA","GAB","GMB","GHA","GIB","GRD","GRL","GRC","GLP","GUM","GTM","GGY","GIN","GNQ","GNB","GUY","GUF","GEO","SGS","HTI","HND","HKG","HUN","IND","IDN","IRQ","IRN","IRL","ISL","ISR","ITA","JAM","JPN","JEY","JOR","KAZ","KEN","KGZ","KIR","XKX","KWT","LAO","LSO","LVA","LBN","LBY","LBR","LIE","LTU","LUX","MAC","MKD","MDG","MYS","MWI","MDV","MLI","MLT","IMN","MNP","MAR","MTQ","MUS","MRT","MYT","MEX","FSM","MDA","MCO","MNG","MSR","MNE","MOZ","MMR","NAM","NRU","NIC","NER","NGA","NIU","NFK","NOR","NCL","NZL","NPL","OMN","UGA","UZB","PAK","PLW","PAN","PNG","PRY","NLD","PHL","PCN","POL","PYF","PRI","PRT","PER","QAT","ROU","GBR","RUS","RWA","CAF","DOM","CZE","REU","ESH","KNA","SMR","SPM","VCT","SHN","LCA","SLB","SLV","WSM","ASM","SRB","SYC","SLE","SGP","SVK","SVN","SOM","SDN","LKA","CHE","SUR","SWE","SWZ","SYR","STP","SEN","TJK","TZA","TWN","TCD","ATF","IOT","PSE","THA","TGO","TKL","TON","TTO","TUN","TKM","TUR","TUV","UKR","USA","URY","VUT","VEN","VIR","VGB","VNM","WLF","YEM","ZMB","ZWE","EGY","ARE","ECU","ERI","VAT","ETH","CYM","FLK","FRO","MHL","TCA"]
 
-isos2 = ["AD","AE","AG","AI","AL","AM","AO","AR","AS","AT","AU","AW","AZ","BA","BB","BD","BE","BG","BH","BI","BM","BN","BO","BR","BS","BT","BW","BY","BZ","CA","CG","CH","CK","CL","CN","CR","CU","CV","CY","CZ","DE","DJ","DK","DM","DO","EC","EE","EG","ER","ES","FI","FJ","FM","FR","GA","GB","GD","GE","GF","GM","GN","GP","GR","GT","GU","GW","GY","HK","HN","HR","HT","HU","ID","IE","IL","IN","IR","IS","IT","JM","JO","JP","KE","KG","KH","KI","KM","KN","KR","KW","KY","KZ","LA","LB","LC","LI","LK","LS","LT","LU","LV","MA","MC","MD","ME","MG","MH","MK","MN","MO","MP","MQ","MS","MT","MU","MV","MW","MY","NA","NC","NI","NL","NO","NP","NU","NZ","OM","PA","PE","PF","PG","PH","PK","PL","PR","PS","PT","PW","PY","QA","RE","RO","RS","RW","SA","SB","SC","SE","SG","SI","SK","SL","SM","SN","SR","ST","SV","TC","TD","TH","TJ","TM","TO","TR","TT","TV","TW","US","UY","UZ","VC","VE","VG","VI","VN","VU","WS","XK","ZA","ZM","ZW","RU","UA","CO","MX","CF","ET","LY","ML","MM","SY","YE","BF","BJ","CD","CI","CM","DZ","GH","IQ","MR","MZ","NE","NG","SD","TG","TN","TZ","UG"]
+isos2 = ["AD","AE","AG","AL","AM","AO","AR","AS","AT","AU","AW","AZ","BA","BB","BD","BE","BF","BG","BH","BI","BJ","BM","BN","BO","BR","BS","BT","BW","BY","BZ","CA","CD","CF","CG","CH","CI","CL","CM","CN","CO","CR","CU","CV","CY","CZ","DE","DJ","DK","DM","DO","DZ","EC","EE","EG","ER","ES","ET","FI","FJ","FM","FR","GA","GB","GD","GE","GH","GM","GN","GR","GT","GU","GW","GY","HK","HN","HR","HT","HU","ID","IE","IL","IN","IQ","IR","IS","IT","JM","JO","JP","KE","KG","KH","KI","KM","KR","KW","KY","KZ","LA","LB","LC","LI","LK","LS","LT","LU","LV","LY","MA","MC","MD","ME","MG","MH","MK","ML","MM","MN","MO","MP","MT","MU","MV","MW","MX","MY","MZ","NA","NC","NE","NG","NI","NL","NO","NP","NZ","OM","PA","PE","PF","PG","PH","PK","PL","PR","PT","PW","PY","QA","RO","RS","RU","RW","SA","SB","SC","SD","SE","SG","SI","SK","SL","SM","SN","SR","SV","SY","TC","TD","TG","TH","TJ","TM","TN","TO","TR","TT","TV","TZ","UA","UG","US","UY","UZ","VC","VE","VG","VI","VN","VU","WS","XK","YE","ZA","ZM","ZW"]
 
 def readCSV(filename:str) -> list[dict]:
     """Cette fonction ouvre un fichier CSV et le convertit en une liste de dictionnaires, qui ont pour clé les colonnes du CSV."""
     import csv
 
     table = []
-    file = open("data/csv/"+filename+".csv", encoding="utf-8-sig", newline="\n")
+    file = open("csv/"+filename+".csv", encoding="utf-8-sig", newline="\n")
     for ligne in csv.DictReader(file,delimiter=";"):
         table.append(dict(ligne))
     file.close()
@@ -31,12 +31,12 @@ def baseCsv(nameXlsx:str,nameSheet:str,nameCsv:str,
     - `start` et `stop` : année de début et de fin des données
     - `pays` : nom de la colonne où est inséré le nom du pays
     - Paramètres optionnels : `checkIso` pour filtrer les pays / `checkNA` pour retirer les valeurs nulles / `xls` si le fichier est un .xls au lieu de .xlxs
-    Le fichier Excel doit se trouver dans le répertoire data/xlsx, et le CSV sera sauvegardé dans data/csv"""
+    Le fichier Excel doit se trouver dans le répertoire src, et le CSV sera sauvegardé dans csv"""
 
-    with open(f"data/csv/{nameCsv}.csv","w",encoding="UTF-8") as file:
+    with open(f"csv/{nameCsv}.csv","w",encoding="UTF-8") as file:
 
         ext = "xls" if xls else "xlsx"
-        df = pd.read_excel(f"data/xlsx/{nameXlsx}.{ext}",nameSheet,header=head)
+        df = pd.read_excel(f"src/{nameXlsx}.{ext}",nameSheet,header=head)
         print(len(df))
 
         liste = [i for i in range(start,stop+1)]
@@ -50,10 +50,7 @@ def baseCsv(nameXlsx:str,nameSheet:str,nameCsv:str,
 
             for col in liste:
                 if not checkNA and df[col][row+plus] == "..":
-                    if df[col][row+plus-1] == "..":
-                        string+=";NULL"
-                    else:
-                        string+=f";{df[col][row+plus-1]}"
+                    string+=";NULL"
                 elif checkNA and pd.isna(df[col][row+plus]):
                     string+=";NULL"
                 else:
@@ -83,7 +80,7 @@ def agglomerate(tags,start,stop,maxRow):
 
 def toCSV(final,fileName):
 
-    file = file=open(f"data/csv/{fileName}.csv", "w", encoding="utf-8-sig")
+    file = file=open(f"csv/{fileName}.csv", "w", encoding="utf-8-sig")
 
     ajout_key=""
     for key in final[0].keys():
@@ -211,6 +208,16 @@ def clearTables(liste):
         cur.execute(f"DELETE FROM pays WHERE id = '{i}'")
     cnx.commit()
 
+def clearIso(table):
+    global db
+    cnx, cur = connectSQL(db)
+
+    for i in cur.execute(f"SELECT DISTINCT id_pays FROM {table}").fetchall():
+        if i["id_pays"] not in isos2:
+            cur.execute(f"DELETE FROM {table} WHERE id_pays = '{i['id_pays']}'")
+    
+    cnx.commit()
+
 def merge(main,liste,rename,remove=False):
     global db
     cnx, cur = connectSQL(db)
@@ -242,9 +249,28 @@ if __name__ == "__main__":
     # nameToCode("airports")
     # baseCsv("GPI-2023-overall-scores-and-domains-2008-2023","Safety and Security","safety",163,1,0,3,2008,2023,"Country")
     # toCSV(agglomerate(["safety"],2008,2023,163),"safetyClean")
-    baseCsv("allData"," Inbound Tourism-Arrivals","arriveesV4",1341,6,3,5,1995,2021,"Basic data and indicators")
+    
+    # baseCsv("unwto2022"," Inbound Tourism-Arrivals","arriveesV4",1338,6,3,2,1995,2022,"Basic data and indicators")
+
+    # baseCsv("unwto2022","Inbound Tourism-Regions","ArriveesAfrique",2454,11,3,2,1995,2022,"Basic data and indicators")
+    # baseCsv("unwto2022","Inbound Tourism-Regions","ArriveesAM",2454,11,4,2,1995,2022,"Basic data and indicators")
+    # baseCsv("unwto2022","Inbound Tourism-Regions","ArriveesEA",2454,11,5,2,1995,2022,"Basic data and indicators")
+    # baseCsv("unwto2022","Inbound Tourism-Regions","ArriveesEU",2454,11,6,2,1995,2022,"Basic data and indicators")
+    # baseCsv("unwto2022","Inbound Tourism-Regions","ArriveesME",2454,11,7,2,1995,2022,"Basic data and indicators")
+    # baseCsv("unwto2022","Inbound Tourism-Regions","ArriveesSA",2454,11,8,2,1995,2022,"Basic data and indicators")
+    # baseCsv("unwto2022","Inbound Tourism-Regions","ArriveeAfrique",2454,6,3,2,1995,2022,"Basic data and indicators")
+
+    # baseCsv("unwto2022","Inbound Tourism-Transport","ArriveeAvion",1338,6,3,2,1995,2022,"Basic data and indicators")
+    # baseCsv("unwto2022","Inbound Tourism-Transport","ArriveesEau",1338,6,4,2,1995,2022,"Basic data and indicators")
+    # baseCsv("unwto2022","Inbound Tourism-Transport","ArriveeTerre",1338,6,5,2,1995,2022,"Basic data and indicators")
+
+    # baseCsv("unwto2022","Outbound Tourism-Departures","Departs",1115,5,3,2,1995,2022,"Basic data and indicators")
+
+    # toSQL(agglomerate(["arriveesV4","Departs","ArriveesAF","ArriveesAM","ArriveesEA","ArriveesEU","ArriveesME","ArriveesSA","ArriveeAvion","ArriveesEau","ArriveeTerre"],1995,2022,223),"tourismeV2","""CREATE TABLE `tourismeV2` (`id` int NOT NULL AUTO_INCREMENT,`id_pays` varchar(256) NOT NULL,`annee` int DEFAULT NULL,`arriveesTotal` int DEFAULT NULL,`departs` int DEFAULT NULL,`arriveesAF` int DEFAULT NULL,`arriveesAM` int DEFAULT NULL,`arriveesEA` int DEFAULT NULL,`arriveesEU` int DEFAULT NULL,`arriveesME` int DEFAULT NULL,`arriveesSA` int DEFAULT NULL,`arriveesAvion` int DEFAULT NULL,`arriveesEau` int DEFAULT NULL,`arriveesTerre` int DEFAULT NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;""")
+
+    # nameToCode("tourismev2")
+    clearIso("tourismev2")
     pass
 
 # baseCsv("allData"," Inbound Tourism-Arrivals","test",1341,6,2,5,1995,2021,"Basic data and indicators")
 # checking()
-

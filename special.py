@@ -328,17 +328,14 @@ def addSafety():
 
 # addDescip(["Aya","Cassandra","Hugo","Line","Lucas","Rémy"])
     
-# addGrowth("tourisme", ["arriveesTotal","arriveesAF","arriveesAM","arriveesEA","arriveesEU","arriveesME","arriveesSA","arriveesAutre","arriveesPerso","arriveesPro","arriveesAvion","arriveesEau","arriveesTerre","departs","depenses","recettes","emplois"])
+addGrowth("tourisme", ["arriveesTotal","arriveesAF","arriveesAM","arriveesEA","arriveesEU","arriveesME","arriveesSA","arriveesAvion","arriveesEau","arriveesTerre","departs"])
 
 # addGrowth("economie", ["pib","pibParHab"])
 
 # addGrowth("surete", ["safety"])
 
-# addNorm("tourisme", ["arriveesTotal","arriveesAF","arriveesAM","arriveesEA","arriveesEU","arriveesME","arriveesSA","arriveesAutre","arriveesPerso","arriveesPro","arriveesAvion","arriveesEau","arriveesTerre","departs","depenses","recettes","emplois"])
+addNorm("tourisme", ["arriveesTotal","arriveesAF","arriveesAM","arriveesEA","arriveesEU","arriveesME","arriveesSA","arriveesAvion","arriveesEau","arriveesTerre","departs"])
 
 # addNorm("economie", ["pib","pibParHab"])
 
 # addNorm("surete", ["safety"])
-    
-addNorm("tourisme",["arriveesTotal"])
-addGrowth("tourisme",["arriveesTotal"])
