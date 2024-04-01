@@ -1,0 +1,3 @@
+# Meta
+
+Un ensemble de fichiers CSV contenant des informations sur les pays : codes ISO, noms, etc...
