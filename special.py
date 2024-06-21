@@ -260,8 +260,10 @@ def addPop():
     cnx.commit()
 
 def addGrowth(table,cols):
+    print("grow")
     cnx, cur = connectSQL(db)
     for col in cols:
+        print(col)
         for i in isos2:
             get = cur.execute(f"""SELECT id_pays, annee, {col},
             IF(@last_entry = 0, 0, round((({col} - @last_entry) / @last_entry) * 100,2)) "grow",
@@ -281,13 +283,28 @@ def addGrowth(table,cols):
     cnx.commit()
 
 def addNorm(table,cols):
+    print("norm")
     cnx, cur = connectSQL(db)
     
     for col in cols:
+        print(col)
         norm = cur.execute(f"SELECT id_pays, annee, ({col} - MIN({col})over()) / (MAX({col})over() - MIN({col})over())*100 AS norm FROM {table};").fetchall()
         for i in norm:
             if i["norm"] is not None:
                 cur.execute(f"UPDATE {table}_norm SET {col} = {i['norm']} WHERE id_pays = '{i['id_pays']}' AND annee = {i['annee']}")
+    
+    cnx.commit()
+
+def addRank(table,cols):
+    print("rank")
+    cnx, cur = connectSQL(db)
+    
+    for col in cols:
+        print(col)
+        rank = cur.execute(f"SELECT id_pays, annee, {col}, RANK() OVER (PARTITION BY annee ORDER BY {col} DESC) as rang FROM {table} WHERE {col} IS NOT NULL;").fetchall()
+        for i in rank:
+            if i["rang"] is not None:
+                cur.execute(f"UPDATE {table}_rank SET {col} = {i['rang']} WHERE id_pays = '{i['id_pays']}' AND annee = {i['annee']}")
     
     cnx.commit()
 
@@ -326,16 +343,39 @@ def addSafety():
     
     cnx.commit()
 
+def mergeScores():
+    cnx, cur = connectSQL(db)
+    for i in cur.execute("SELECT * FROM score_ind_norm").fetchall():
+        if i["pibHab"] is None:
+            i["pibHab"] = "NULL"
+        if i["gesHab"] is None:
+            i["gesHab"] = "NULL"
+        if i["arriveesTotal"] is None:
+            i["arriveesTotal"] = "NULL"
+        if i["gpi"] is None:
+            i["gpi"] = "NULL"
+        if i["idh"] is None:
+            i["idh"] = "NULL"
+        if i["elecRenew"] is None:
+            i["elecRenew"] = "NULL"
+        cur.execute(f"UPDATE pays_211 SET pibParHab = {i['pibHab']}, gesHab = {i['gesHab']}, arriveesTotal = {i['arriveesTotal']}, gpi = {i['gpi']}, idh = {i['idh']}, elecRenew = {i['elecRenew']} WHERE id = '{i['id_pays']}'")
+
+    cnx.commit()
+
 # addDescip(["Aya","Cassandra","Hugo","Line","Lucas","Rémy"])
     
-addGrowth("tourisme", ["arriveesTotal","arriveesAF","arriveesAM","arriveesEA","arriveesEU","arriveesME","arriveesSA","arriveesAvion","arriveesEau","arriveesTerre","departs"])
+# addGrowth("alldata", ["co2", "elecRenew", "pibParHab", "gpi", "arriveesTotal", "departs", "idh", "ges", "pib", "safety"])
 
 # addGrowth("economie", ["pib","pibParHab"])
 
 # addGrowth("surete", ["safety"])
 
-addNorm("tourisme", ["arriveesTotal","arriveesAF","arriveesAM","arriveesEA","arriveesEU","arriveesME","arriveesSA","arriveesAvion","arriveesEau","arriveesTerre","departs"])
+# addNorm("alldata", ["co2", "elecRenew", "pibParHab", "gpi", "arriveesTotal", "departs", "idh", "ges", "pib", "safety"])
+# addRank("alldata", ["co2", "elecRenew", "pibParHab", "gpi", "arriveesTotal", "departs", "idh", "ges", "pib", "safety"])
 
 # addNorm("economie", ["pib","pibParHab"])
 
 # addNorm("surete", ["safety"])
+
+# addPop()
+mergeScores()
